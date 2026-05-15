@@ -1,1 +1,2 @@
-# Proyecto-integrador
+# Proyecto integrador - 1era entrega
+En este primera entrega del proyecto integrador se muestra el diagrama UML que se realizó con el propósito de ayudar a crear un sistema que ayude a organizar los clientes y sus mascotas dentro de una clínica veterinaria. Definiendo las clases gracias al diagrama es como podemos crear una base para poder ver una aproximación de cómo es que se verá nuestro código ya en el lenguaje c++.
