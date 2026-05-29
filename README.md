@@ -7,3 +7,11 @@ El programa solo nos permitirá agregar nuevos clientes, veterinarios y mascotas
 ## Consideraciones
 El programa solo va a correr dentro de la consola y está hecho con el lenguaje de programación de c++, va a poder visualizarse aquí dentro de github e igual en todos los sistemas operativos
 
+## Casos de error
+1. Si se llega a colocar o dar algún dato de otro tipo el cuál es inválido como poner la edad como un dato de tipo string en vez de un integer llegaría a dar fallas dentro de nuestro programa, llegando a que colapse.
+
+2. Si usamos el polimorfismo con nuestro vector de mascotas y se llega a dar de baja una mascota o termina el programa, se podría quedar dentro de nuestra memoria RAM del sistema gracias al comando 'new'. Esto se puede llegar a resolver simplemente usando delete siempre antes de correr nuestro código.
+
+3. Si se llegan a utilizar las funciones mostrarMascotas() o mostrarVeterinarios() y estos están vacíos ya que no tienen ningún dato, el programa intentaría acceder a posiciones de memoria inexistentes y llegaría a romper la ejecución del código.
+
+4. Al utilizar la función de buscarDueño() y agrega algún dato mal o busca a un cliente inexistente, el sistema puede llegar a darnos algún dato basura o nulo, dándonos un error en nuestro código.
