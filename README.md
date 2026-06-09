@@ -15,3 +15,15 @@ El programa solo va a correr dentro de la consola y está hecho con el lenguaje 
 3. Si se llegan a utilizar las funciones mostrarMascotas() o mostrarVeterinarios() y estos están vacíos ya que no tienen ningún dato, el programa intentaría acceder a posiciones de memoria inexistentes y llegaría a romper la ejecución del código.
 
 4. Al utilizar la función de buscarDueño() y agrega algún dato mal o busca a un cliente inexistente, el sistema puede llegar a darnos algún dato basura o nulo, dándonos un error en nuestro código.
+
+## Cómo compilar
+Para poder compilar todo el proyecto primero tienes que instalar todos los archivos y guardarlos dentro de una carpeta. Dentro de la terminal vas a tener que redirigir la dirección hacia esa carpeta y luego lo compilarás con la función g++ y con todos los archivos cpp como se muestra:
+
+g++ main.cpp Clinica.cpp Persona.cpp Mascota.cpp -o sistema_clinica
+
+Y ya con el archivo que compilaron escribiran de nuevo en la terminal:
+
+### Para Linux / MacOS:                  Para Windows: 
+./sistema_clinica                        sistema_clinica.exe
+
+Con esto ya podrán utilizar el programa con total libertad.
