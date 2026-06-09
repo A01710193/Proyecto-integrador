@@ -23,7 +23,10 @@ g++ main.cpp Clinica.cpp Persona.cpp Mascota.cpp -o sistema_clinica
 
 Y ya con el archivo que compilaron escribiran de nuevo en la terminal:
 
-### Para Linux / MacOS:                  Para Windows: 
-./sistema_clinica                        sistema_clinica.exe
+### Para Linux / MacOS:
+./sistema_clinica      
+
+### Para Windows: 
+sistema_clinica.exe
 
 Con esto ya podrán utilizar el programa con total libertad.
