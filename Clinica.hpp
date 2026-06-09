@@ -3,30 +3,30 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 #include "Persona.hpp"
 
 using namespace std;
 
-class Clinica{
+class Clinica {
 private:
     vector<Veterinario*> Veterinarios;
     vector<Dueño*> Dueños;
     
 public:
-    // Constructores y destructor
     Clinica();
     Clinica(vector<Veterinario*>, vector<Dueño*>);
     ~Clinica();
     
-    // Métodos
     double calcularSalario(Veterinario*);
     double calcularBono(Veterinario*, double);
     vector<Veterinario*> mostrarVeterinarios();
     void agregarCliente(string Nombre, int Edad, string Telefono, string Correo, string Direccion);
     void agregarVeterinario(string Nombre, int Edad, string Telefono, string Correo, string Direccion, double Salario);
-    bool eliminarCliente(string Nombre, string Telefono, string Correo);
+    bool eliminarCliente(string Telefono);
     bool eliminarVeterinario(string Nombre);
     Dueño* buscarDueño(string Telefono);
+    Veterinario* buscarVeterinario(string Nombre);
 };
 
-#endif /* Clinica_hpp */
+#endif
