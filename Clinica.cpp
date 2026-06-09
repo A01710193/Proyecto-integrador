@@ -1,126 +1,89 @@
 #include "Clinica.hpp"
 
-// Constructores y destructor
-Clinica::Clinica(){};
-Clinica::Clinica(vector<Veterinario*> nVeterinarios, vector<Dueño*> nDueños){
+Clinica::Clinica() {}
+Clinica::Clinica(vector<Veterinario*> nVeterinarios, vector<Dueño*> nDueños) {
     Veterinarios = nVeterinarios;
     Dueños = nDueños;
-};
+}
 
-Clinica::~Clinica(){
-    for (int i = 0; i < Veterinarios.size(); i++){
-        delete Veterinarios[i];
-    }
+Clinica::~Clinica() {
+    for (int i = 0; i < Veterinarios.size(); i++) delete Veterinarios[i];
     Veterinarios.clear();
-    
-    for (int i = 0; i < Dueños.size(); i++){
-        delete Dueños[i];
-    }
+    for (int i = 0; i < Dueños.size(); i++) delete Dueños[i];
     Dueños.clear();
-    
-};
+}
 
-// Métodos
-double Clinica::calcularSalario(Veterinario* v){
-    if (v == nullptr){
-        cout << "Error: el veterinario que ingresó no es válido" << endl;
-        return 0.0;
-    }
-    
-    return v -> getSalario();
-};
+double Clinica::calcularSalario(Veterinario* v) {
+    if (v == nullptr) return 0.0;
+    return v->getSalario();
+}
 
-double Clinica::calcularBono(Veterinario* v, double bonoPorCliente){
-    if (v == nullptr){
-        cout << "Error: el veterinario que ingresó no es válido" << endl;
-        return 0.0;
-    }
-    
-    int cantidadClientes = v -> clientesAtendidos();
+double Clinica::calcularBono(Veterinario* v, double bonoPorCliente) {
+    if (v == nullptr) return 0.0;
+    int cantidadClientes = v->clientesAtendidos();
     double bonoTotal = cantidadClientes * bonoPorCliente;
-    
-    cout << "El Dr/a " << v -> getNombre() << " ha atendido a " << cantidadClientes << " clientes, por lo que se le otorgó un bono de $" << bonoTotal << endl;
+    cout << "El Dr/a " << v->getNombre() << " tiene un bono total de $" << bonoTotal << endl;
     return bonoTotal;
-};
+}
 
-vector<Veterinario*> Clinica::mostrarVeterinarios(){
-    if (Veterinarios.empty()){
-        cout << "No hay veterinarios registrados en la clínica." << endl;
-    }
-    
-    cout << "----- Lista de veterinarios -----\n" << endl;
-    for (int i = 0; i < Veterinarios.size(); i++){
-        Veterinarios[i] -> mostrarDatosPersonales();
-        cout << "---- Fin de la lista ----\n" << endl;
-    }
+vector<Veterinario*> Clinica::mostrarVeterinarios() {
+    for (int i = 0; i < Veterinarios.size(); i++) Veterinarios[i]->mostrarDatosPersonales();
     return Veterinarios;
-};
+}
 
-void Clinica::agregarCliente(string nNombre, int nEdad, string nTelefono, string nCorreo, string nDireccion){
-    Dueño* d = new Dueño();
-    d -> setNombre(nNombre);
-    d -> setEdad(nEdad);
-    d -> setTelefono(nTelefono);
-    d -> setCorreo(nCorreo);
-    d -> setDireccion(nDireccion);
-    
-    Dueños.push_back(d);
-    cout << "El cliente " << nNombre << " ha sido registrado con éxito." << endl;
-};
+void Clinica::agregarCliente(string Nombre, int Edad, string Telefono, string Correo, string Direccion) {
+    Dueño* nuevo = new Dueño();
+    nuevo->setNombre(Nombre); nuevo->setEdad(Edad); nuevo->setTelefono(Telefono);
+    nuevo->setCorreo(Correo); nuevo->setDireccion(Direccion);
+    Dueños.push_back(nuevo);
+    cout << "Cliente " << Nombre << " agregado con éxito." << endl;
+}
 
+void Clinica::agregarVeterinario(string Nombre, int Edad, string Telefono, string Correo, string Direccion, double Salario) {
+    vector<int> h = {8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+    Veterinario* nuevo = new Veterinario(h, vector<Dueño*>(), Salario);
+    nuevo->setNombre(Nombre); nuevo->setEdad(Edad); nuevo->setTelefono(Telefono);
+    nuevo->setCorreo(Correo); nuevo->setDireccion(Direccion);
+    Veterinarios.push_back(nuevo);
+    cout << "Veterinario Dr/a " << Nombre << " agregado con éxito." << endl;
+}
 
-void Clinica::agregarVeterinario(string nNombre, int nEdad, string nTelefono, string nCorreo, string nDireccion, double nSalario){
-    Veterinario* v = new Veterinario();
-    v -> setNombre(nNombre);
-    v -> setEdad(nEdad);
-    v -> setTelefono(nTelefono);
-    v -> setCorreo(nCorreo);
-    v -> setDireccion(nDireccion);
-    v -> setSalario(nSalario);
-    
-    Veterinarios.push_back(v);
-    cout << "El Dr/a " << nNombre << " ha sido registrado con éxito." << endl;
-};
-
-bool Clinica::eliminarCliente(string nNombre, string nTelefono, string nCorreo){
-    for (int i = 0; i < Dueños.size(); i++){
-        if (Dueños[i] -> getNombre() == nNombre && Dueños[i] -> getTelefono() == nTelefono && Dueños[i] -> getCorreo() == nCorreo){
+bool Clinica::eliminarCliente(string nTelefono) {
+    for (int i = 0; i < Dueños.size(); i++) {
+        if (Dueños[i]->getTelefono() == nTelefono) {
             delete Dueños[i];
-
             Dueños.erase(Dueños.begin() + i);
-            cout << "El cliente " << nNombre << " ha sido eliminado del sistema." << endl;
+            cout << "Cliente eliminado del sistema." << endl;
             return true;
         }
     }
-    
-    cout << "No se ha podido encontrar el cliente " << nNombre << " en el sistema." << endl;
     return false;
-};
+}
 
-bool Clinica::eliminarVeterinario(string nNombre){
-    for (int i = 0; i < Veterinarios.size(); i++){
-        if (Veterinarios[i] -> getNombre() == nNombre){
+bool Clinica::eliminarVeterinario(string nNombre) {
+    for (int i = 0; i < Veterinarios.size(); i++) {
+        if (Veterinarios[i]->getNombre() == nNombre) {
             delete Veterinarios[i];
-            
             Veterinarios.erase(Veterinarios.begin() + i);
-            cout << "El Dr/a " << nNombre << " ha sido eliminado del sistema." << endl;
+            cout << "Veterinario eliminado del sistema." << endl;
             return true;
         }
     }
-    
-    cout << "No se ha podido encontrar el/la Dr/a " << nNombre << " en el sistema." << endl;
     return false;
-};
+}
 
-
-Dueño* Clinica::buscarDueño(string nTelefono){
-    for (int i = 0; i < Dueños.size(); i++){
-        if (Dueños[i] -> getTelefono() == nTelefono){
-            cout << "Cliente " << Dueños[i] -> getNombre() << " encontrado en el sistema." << endl;
+Dueño* Clinica::buscarDueño(string nTelefono) {
+    for (int i = 0; i < Dueños.size(); i++) {
+        if (Dueños[i]->getTelefono() == nTelefono) {
             return Dueños[i];
         }
     }
-    cout << "El cliente no se ha podido encontrar en el sistema." << endl;
     return nullptr;
-};
+}
 
+Veterinario* Clinica::buscarVeterinario(string nNombre) {
+    for (int i = 0; i < Veterinarios.size(); i++) {
+        if (Veterinarios[i]->getNombre() == nNombre) return Veterinarios[i];
+    }
+    return nullptr;
+}
