@@ -2,9 +2,10 @@
 #define Mascota_hpp
 
 #include <iostream>
+#include <string>
 using namespace std;
 
-class Mascota{
+class Mascota {
 protected:
     string nombre;
     int edad;
@@ -15,12 +16,10 @@ protected:
     bool agresividad;
     
 public:
-    // Constructores y destructores
     Mascota();
     Mascota(string nombre, int edad, string motivoConsulta, string tipo, string raza, string cartillaVacunas, bool agresividad);
     virtual ~Mascota();
     
-    // Setters
     void setNombre(string);
     void setEdad(int);
     void setMotivoConsulta(string);
@@ -29,7 +28,6 @@ public:
     void setCartillaVacunas(string);
     void setAgresividad(bool);
     
-    // Getters
     string GetNombre();
     int getEdad();
     string getMotivoConsulta();
@@ -38,53 +36,40 @@ public:
     string getCartillaVacunas();
     bool getAgresividad();
     
-    // Métodos
     int tipoConsulta();
     string registrarCartilla();
     void agregarVacuna(string);
     virtual void mostrarCuidados() = 0;
 };
 
-class Perro : public Mascota{
+class Perro : public Mascota {
 private:
     string tamaño;
     
 public:
-    // Constructores y destructores
     Perro();
     Perro(string tamaño);
     ~Perro();
     
-    // Setters
     void setTamaño(string);
-    
-    // Getters
     string getTamaño();
     
-    // Métodos
     void mostrarCuidados();
-    
 };
 
-class Gato : public Mascota{
+class Gato : public Mascota {
 private:
     bool actividadExterior;
     
 public:
-    // Constructores y destructores
     Gato();
     Gato(bool actividadExterior);
     ~Gato();
     
-    // Setters
     void setActividadExterior(bool);
-    
-    // Getters
     bool getActividadExterior();
     
-    // Métodos
     void mostrarCuidados();
 };
 
-
-#endif /* Mascota_hpp */
+#endif
